@@ -1,7 +1,7 @@
 import unittest
 from src.lab2.caesar import encrypt_caesar, decrypt_caesar
 
-class CeaserTestCase(unittest.TestCase):
+class CaesarTestCase(unittest.TestCase):
 
     def test_encrypt(self):
         self.assertEqual(encrypt_caesar("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 23), "XYZABCDEFGHIJKLMNOPQRSTUVW")
