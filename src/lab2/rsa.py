@@ -25,9 +25,8 @@ def gcd(a: int, b: int) -> int:
     >>> gcd(3, 7)
     1
     """
-    while a != b:
-        if a > b: a -= b
-        else: b -= a
+    while b:
+        a, b = b, a % b
     return a
 
 
@@ -38,9 +37,15 @@ def multiplicative_inverse(e: int, phi: int) -> int:
     >>> multiplicative_inverse(7, 40)
     23
     """
-    # PUT YOUR CODE HERE
-    pass
+    a, b = e, phi
+    old_y, y = 1, 0
 
+    while b != 0:
+        quotient = a // b
+        a, b = b, a - quotient * b
+        old_y, y = y, old_y - quotient * y
+    d = old_y % phi
+    return d
 
 def generate_keypair(p: int, q: int) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[int, int]]:
     if not (is_prime(p) and is_prime(q)):
@@ -66,7 +71,7 @@ def generate_keypair(p: int, q: int) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[in
 
     # Return public and private keypair
     # Public key is (e, n) and private key is (d, n)
-    return ((e, n), (d, n))
+    return (e, n), (d, n)
 
 
 def encrypt(pk: tp.Tuple[int, int], plaintext: str) -> tp.List[int]:
@@ -102,3 +107,5 @@ if __name__ == "__main__":
     print("Decrypting message with public key ", public, " . . .")
     print("Your message is:")
     print(decrypt(public, encrypted_msg))
+
+
