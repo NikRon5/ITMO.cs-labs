@@ -8,7 +8,7 @@ class VigenereTestCase(unittest.TestCase):
     def test_encrypt(self):
         self.assertEqual(encrypt_vigenere("GEEKSFORGEEKS", "AYUSH"), "GCYCZFMLYLEIM")
     def test_decrypt(self):
-        self.assertEqual(decrypt_vigenere("GCYCZFMLYLEIM", "AYUSH"), "GEEKSFORGEEKS") \
+        self.assertEqual(decrypt_vigenere("GCYCZFMLYLEIM", "AYUSH"), "GEEKSFORGEEKS")
 
     def test_randomized(self):
         kwlen = random.randint(4, 24)
