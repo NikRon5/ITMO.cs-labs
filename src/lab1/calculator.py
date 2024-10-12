@@ -4,7 +4,7 @@ def calculate(a, b, oper):
     """Function for calculating two numbers"""
     try:
         if oper == "+":
-            return float(a) + float(b)
+            return round(float(a) + float(b), 5)
         if oper == "-":
             return round(float(a) - float(b), 5)
         if oper == "*":
