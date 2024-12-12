@@ -32,26 +32,29 @@ class Breakdown:
                 self.__respondents[group]["respondents"].sort(key=lambda _respondent: (-_respondent.age, _respondent.fio))
                 break
 
-    def print(self):
+    def get_output(self):
+        s = ""
         for group in self.__respondents:
             if len(self.__respondents[group]["respondents"]) != 0:
-                string = f"{group}: " + ", ".join(f"{resp.fio} ({resp.age})" for resp in self.__respondents[group]["respondents"])
-                print(string, end="\n\n")
+                s += f"{group}: " + ", ".join(f"{resp.fio} ({resp.age})" for resp in self.__respondents[group]["respondents"])
+                s += "\n\n"
+        return s.strip()
+
+    def print(self):
+        print(self.get_output())
 
 
 def main():
-    # For debug
-    # respondents_data = [
-    #     "Кошельков Захар Брониславович, 105",
-    #     "Дьячков Нисон Иринеевич, 88",
-    #     "Ярилова Розалия Трофимовна, 29",
-    #     "Соколов Андрей Сергеевич, 15",
-    #     "Иванов Варлам Якунович, 88",
-    #     "Старостин Ростислав Ермолаевич, 50",
-    #     "Егоров Алан Петрович, 7",
-    #     "Егоров Ян Петрович, 7",
-    #     "Егоров Борис Петрович, 7"
-    # ]
+    # For test
+    # Кошельков Захар Брониславович, 105
+    # Дьячков Нисон Иринеевич, 88
+    # Ярилова Розалия Трофимовна, 29
+    # Соколов Андрей Сергеевич, 15
+    # Иванов Варлам Якунович, 88
+    # Старостин Ростислав Ермолаевич, 50
+    # Егоров Алан Петрович, 7
+    # Егоров Ян Петрович, 7
+    # Егоров Борис Петрович, 7
 
     breakdown = Breakdown()
 
@@ -62,12 +65,6 @@ def main():
 
         respondent = Respondent(respondent_data)
         breakdown.add_respondent(respondent)
-
-    # For debug
-    # for respondent_data in respondents_data:
-    #
-    #     respondent = Respondent(respondent_data)
-    #     breakdown.add_respondent(respondent)
 
     breakdown.print()
 
