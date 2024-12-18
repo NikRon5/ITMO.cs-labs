@@ -20,7 +20,7 @@ class OrdersManager:
         """Запись провалидированных заказов в файл"""
         to_write = self.get_valid_orders_output()
         f = open(self.__order_county_path, "w", encoding="utf-8")
-        f.write("\n".join(to_write))
+        f.write(to_write)
         f.close()
 
     def write_non_valid_orders(self) -> None:
