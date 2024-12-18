@@ -1,4 +1,4 @@
-from order import Order
+from src.lab5.order import Order
 
 
 class OrdersManager:

@@ -83,7 +83,7 @@ class Order:
         shopping_list = shopping_list.split(', ')
         shopping_list_set = set(shopping_list)
         shopping_list_formatted = []
-        for goods in shopping_list_set:
+        for goods in sorted(shopping_list_set):
             number_of_goods = shopping_list.count(goods)
             if number_of_goods == 1:
                 shopping_list_formatted.append(goods)
