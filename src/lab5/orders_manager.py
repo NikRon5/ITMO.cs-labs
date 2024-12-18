@@ -5,11 +5,11 @@ class OrdersManager:
     def __init__(
         self,
         orders_path,
-        order_county_path,
+        valid_orders_path,
         non_valid_orders_path
     ):
         self.__non_valid_orders_path = non_valid_orders_path
-        self.__order_county_path = order_county_path
+        self.__order_county_path = valid_orders_path
         self.__valid_orders = []
         self.__non_valid_orders = []
 
@@ -29,18 +29,18 @@ class OrdersManager:
         f.close()
 
     def print_valid_orders(self) -> None:
-        print(self.__get_valid_orders_output())
+        print(self.get_valid_orders_output())
 
     def print_non_valid_orders(self) -> None:
-        print(self.__get_non_valid_orders_output())
+        print(self.get_non_valid_orders_output())
 
-    def __get_valid_orders_output(self) -> str:
+    def get_valid_orders_output(self) -> str:
         output = []
         for order in self.__get_sorted_valid_orders():
             output.append(order.to_string())
         return "\n".join(output)
 
-    def __get_non_valid_orders_output(self) -> str:
+    def get_non_valid_orders_output(self) -> str:
         output = []
         for order in self.__non_valid_orders:
             output.append(order.to_string())
