@@ -11,7 +11,6 @@ def get_movies(path):
     f.close()
     return movies
 
-
 def get_users(path):
     f = open(path, encoding='utf-8')
     users = []

@@ -19,7 +19,7 @@ def main():
     watched_history_input = input()
     user_watch_history = []
     if watched_history_input != "":
-        user_watch_history = [int(i) for i in input().split(',')]
+        user_watch_history = [int(i) for i in watched_history_input.split(',')]
     user = User(user_watch_history)
 
     # Get recommendations
