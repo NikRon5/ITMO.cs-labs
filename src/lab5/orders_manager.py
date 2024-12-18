@@ -5,8 +5,8 @@ class OrdersManager:
     def __init__(
         self,
         orders_path,
-        valid_orders_path,
-        non_valid_orders_path
+        valid_orders_path = None,
+        non_valid_orders_path = None
     ):
         self.__non_valid_orders_path = non_valid_orders_path
         self.__order_county_path = valid_orders_path
@@ -18,17 +18,23 @@ class OrdersManager:
 
     def write_valid_orders(self) -> None:
         """Запись провалидированных заказов в файл"""
-        to_write = self.get_valid_orders_output()
-        f = open(self.__order_county_path, "w", encoding="utf-8")
-        f.write(to_write)
-        f.close()
+        if self.__order_county_path:
+            to_write = self.get_valid_orders_output()
+            f = open(self.__order_county_path, "w", encoding="utf-8")
+            f.write(to_write)
+            f.close()
+        else:
+            print("OrderManager.write_valid_orders() - файл не указан\n")
 
     def write_non_valid_orders(self) -> None:
         """Запись заказов с ошибкой"""
-        to_write = self.get_non_valid_orders_output()
-        f = open(self.__non_valid_orders_path, "w", encoding="utf-8")
-        f.write(to_write)
-        f.close()
+        if self.__non_valid_orders_path:
+            to_write = self.get_non_valid_orders_output()
+            f = open(self.__non_valid_orders_path, "w", encoding="utf-8")
+            f.write(to_write)
+            f.close()
+        else:
+            print("OrderManager.write_non_valid_orders() - файл не указан\n")
 
     def print_valid_orders(self) -> None:
         """Вывод валидированных заказов"""
