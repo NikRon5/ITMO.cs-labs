@@ -7,6 +7,7 @@ class Order:
         self.__init_from_string(order_str)
 
     def __init_from_string(self, string: str) -> None:
+        """Инициализирование заказа из строки"""
         # i:
         # 0 - order_id
         # 1 - shopping_list
@@ -34,6 +35,7 @@ class Order:
     def get_priority(self) -> str:
         return self.__priority
     def get_priority_int(self) -> int:
+        """Приоритет в числовой тип данных"""
         priority_to_num = {
             "MAX": 1,
             "MIDDLE": 2,
@@ -42,6 +44,7 @@ class Order:
         return priority_to_num[self.__priority]
 
     def to_string(self) -> str:
+        """Преобразование заказа в строку"""
         if self.__is_adress_valid and self.__is_phone_number_valid:
             data = [
                 self.__order_id,
@@ -76,7 +79,7 @@ class Order:
         return self.__order_id
 
     def __set_shopping_list(self, shopping_list : str) -> None:
-        # Formatting shopping list
+        """Форматирование набора продуктов"""
         shopping_list = shopping_list.split(', ')
         shopping_list_set = set(shopping_list)
         shopping_list_formatted = []
@@ -97,6 +100,7 @@ class Order:
         return self.__fio
 
     def __set_address(self, address: str) -> None:
+        """Проверка адреса на вверный формат"""
         # i:
         # 0 - country
         # 1 - region
@@ -117,14 +121,12 @@ class Order:
         return self.__address
 
     def __set_phone_number(self, phone_number: str) -> None:
-        # Should be patterned +x-xxx-xxx-xx-xx
+        """Номер телефона в формате +x-xxx-xxx-xx-xx"""
         phone_number_pattern = re.compile(r'^\+\d-\d{3}-\d{3}-\d{2}-\d{2}$')
 
-        # May be empty
         if not phone_number:
             self.__phone_number = "no data"
             self.__is_phone_number_valid = False
-        # Checking pattertn
         elif not phone_number_pattern.match(phone_number):
             self.__phone_number = phone_number
             self.__is_phone_number_valid = False
